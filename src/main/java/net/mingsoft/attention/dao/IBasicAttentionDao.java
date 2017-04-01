@@ -72,8 +72,9 @@ public interface IBasicAttentionDao extends IBaseDao {
 	 * 根据收藏id数组和用户id删除收藏记录
 	 * @param ids 收藏id数组
 	 * @param peopleId 用户id
+	 * @param basicAttentionType 类型
 	 */
-	public void delete(@Param("ids") int[] ids,@Param("peopleId") int peopleId);
+	public void delete(@Param("ids") int[] ids,@Param("peopleId") int peopleId,@Param("basicAttentionType")int basicAttentionType);
 
 	
 }

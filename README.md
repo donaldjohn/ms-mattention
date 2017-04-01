@@ -26,5 +26,4 @@
 
 #文档
 [java doc](http://api.ms.mingsoft.net/mattention/)
-
 [JavaScript doc 文章收藏](http://ms.mingsoft.net/html/86/6507/6510/index.html#ms_mcms_attention_save)

@@ -100,9 +100,9 @@ public class BasicAttentionBizImpl extends BaseBizImpl implements IBasicAttentio
 	}
 
 
-	public void delete(int[] ids, int peopleId) {
+	public void delete(int[] ids, int peopleId,int basicAttentionType) {
 		// TODO Auto-generated method stub
-		this.basicAttentionDao.delete(ids, peopleId);
+		this.basicAttentionDao.delete(ids, peopleId,basicAttentionType);
 	}
 
 }

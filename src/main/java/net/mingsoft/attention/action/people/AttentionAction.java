@@ -126,13 +126,15 @@ public class AttentionAction extends BaseAction {
 	 * @param basic
 	 *            <i>basic参数包含字段信息参考：</i><br/>
 	 *            basicId 信息编号集合，多个编号用逗号隔开,例如 1,2,3,4
+	 *            basicAttentionType 类型，由平台自己定义
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
 	public void delete( HttpServletRequest request, HttpServletResponse response) {
 		// 否则执行多选删除方法
 		int[] ids = BasicUtil.getInts("basicId",",");
+		int basicAttentionType = BasicUtil.getInt("basicAttentionType");
 		// 删除多条评论
-		this.basicAttentionBiz.delete(ids, this.getPeopleBySession(request).getPeopleId());
+		this.basicAttentionBiz.delete(ids, this.getPeopleBySession(request).getPeopleId(),basicAttentionType);
 	}
 }

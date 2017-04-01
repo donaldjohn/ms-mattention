@@ -126,6 +126,7 @@
 	<delete id="delete" parameterType="List">
 		DELETE  FROM basic_attention
 		<where>
+			and BA_TYPE = #{basicAttentionType}
 			<if test="peopleId &gt; 0">
 			and ba_peopleID = #{peopleId}
 			</if>
