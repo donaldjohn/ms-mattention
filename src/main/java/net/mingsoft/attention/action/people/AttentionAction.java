@@ -127,6 +127,12 @@ public class AttentionAction extends BaseAction {
 	 *            <i>basic参数包含字段信息参考：</i><br/>
 	 *            basicId 信息编号集合，多个编号用逗号隔开,例如 1,2,3,4
 	 *            basicAttentionType 类型，由平台自己定义
+	 *            
+	 * <dt><span class="strong">返回</span></dt><br/>
+	 * {code:"错误编码",<br/>
+	 * result:"true存在｜false不存在",<br/>
+	 * resultMsg:"错误信息", <br/>
+	 * }        
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
@@ -136,5 +142,6 @@ public class AttentionAction extends BaseAction {
 		int basicAttentionType = BasicUtil.getInt("basicAttentionType");
 		// 删除多条评论
 		this.basicAttentionBiz.delete(ids, this.getPeopleBySession(request).getPeopleId(),basicAttentionType);
+		this.outJson(response, ModelCode.ATTENTION, true);
 	}
 }
