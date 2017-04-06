@@ -80,7 +80,7 @@
 	</select>
 	<!-- 根据basicId,关注类型,用户ID,AppId查询结束 -->
 
-	<!-- 根据用户ID和APPID查询用户关注内容列表开始(带分页) -->
+	<!-- 根据用户ID和APPID查询用户关注内容列表开始(带分页) 过期-->
 	<select id="queryPageByPeopleIdAndAppId" resultType="java.util.HashMap">
 		select * from
 		<choose>

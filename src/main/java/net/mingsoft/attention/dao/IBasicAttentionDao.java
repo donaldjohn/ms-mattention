@@ -56,6 +56,7 @@ public interface IBasicAttentionDao extends IBaseDao {
 	 * @param modelId 模块编号
 	 * @return 用户关注列表
 	 */
+	@Deprecated
 	public List<BasicAttentionEntity> queryPageByPeopleIdAndAppId(@Param("peopleId")int peopleId,@Param("appId")int appId,@Param("attentionType") int attentionType,@Param("modelId") Integer modelId,@Param("page")PageUtil page);
 	
 	/**
@@ -65,6 +66,7 @@ public interface IBasicAttentionDao extends IBaseDao {
 	 * @param attentionType 积分类型
 	 * @return 数量
 	 */
+	@Deprecated
 	public int queryCountByPeopleIdAndAppId(@Param("peopleId")int peopleId,@Param("appId")int appId,@Param("attentionType") int attentionType,@Param("modelId") Integer modelId);
 	
 

@@ -51,6 +51,7 @@ public interface IBasicAttentionBiz extends IBaseBiz{
 	 * @param page 分页
 	 * @return 用户关注列表
 	 */
+	@Deprecated
 	public List<BasicAttentionEntity> queryPageByPeopleIdAndAppId(int peopleId,int appId,int attentionType,PageUtil page);
 	
 	/**
@@ -62,6 +63,7 @@ public interface IBasicAttentionBiz extends IBaseBiz{
 	 * @param page 分页
 	 * @return 用户关注列表
 	 */
+	@Deprecated
 	public List<BasicAttentionEntity> queryPageByPeopleIdAndAppId(int peopleId,int appId,int attentionType,int modelId,PageUtil page);
 	
 	
@@ -72,6 +74,7 @@ public interface IBasicAttentionBiz extends IBaseBiz{
 	 * @param attentionType 类型
 	 * @return 数量
 	 */
+	@Deprecated
 	public int queryCountByPeopleIdAndAppId(int peopleId,int appId,int attentionType);
 	
 	/**
@@ -82,6 +85,7 @@ public interface IBasicAttentionBiz extends IBaseBiz{
 	 * @param attentionType 类型
 	 * @return 数量
 	 */
+	@Deprecated
 	public int queryCountByPeopleIdAndAppId(int peopleId,int appId,int attentionType,int modelId);
 	
 	/**
