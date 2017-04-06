@@ -125,23 +125,50 @@ public class AttentionAction extends BaseAction {
 	 * 
 	 * @param basic
 	 *            <i>basic参数包含字段信息参考：</i><br/>
-	 *            basicId 信息编号集合，多个编号用逗号隔开,例如 1,2,3,4
-	 *            basicAttentionType 类型，由平台自己定义
-	 *            
-	 * <dt><span class="strong">返回</span></dt><br/>
-	 * {code:"错误编码",<br/>
-	 * result:"true存在｜false不存在",<br/>
-	 * resultMsg:"错误信息", <br/>
-	 * }        
+	 *            basicId 信息编号集合，多个编号用逗号隔开,例如 1,2,3,4 basicAttentionType
+	 *            类型，由平台自己定义
+	 * 
+	 *            <dt><span class="strong">返回</span></dt><br/>
+	 *            {code:"错误编码",<br/>
+	 *            result:"true存在｜false不存在",<br/>
+	 *            resultMsg:"错误信息", <br/>
+	 *            }
 	 */
 	@RequestMapping("/delete")
 	@ResponseBody
-	public void delete( HttpServletRequest request, HttpServletResponse response) {
+	public void delete(HttpServletRequest request, HttpServletResponse response) {
 		// 否则执行多选删除方法
-		int[] ids = BasicUtil.getInts("basicId",",");
+		int[] ids = BasicUtil.getInts("basicId", ",");
 		int basicAttentionType = BasicUtil.getInt("basicAttentionType");
 		// 删除多条评论
-		this.basicAttentionBiz.delete(ids, this.getPeopleBySession(request).getPeopleId(),basicAttentionType);
+		this.basicAttentionBiz.delete(ids, this.getPeopleBySession(request).getPeopleId(), basicAttentionType);
 		this.outJson(response, ModelCode.ATTENTION, true);
+	}
+
+	/**
+	 * 关注列表，只返回basic实体列表 <br/>
+	 * <i>basicAttention参数包含字段信息参考：</i><br/>
+	 * basicAttentionEntity - basicAttentionEntity参数包含字段信息参考： basicAttentionType
+	 * 关注类型 具体平台也可以根据自身的规则定义 ， modelCode 模块编码 ， pageNo 页码 pageSize 一页显示数量 一页显示数量
+	 * 
+	 * <dt><span class="strong">返回</span></dt><br/>
+	 * { "list": [ { "basicPic": "缩略图", "basicTitle": "标题", "basicComment": 评论数,
+	 * "basicCollect": 收藏数量, "basicHit": 点数量, "basicAppId": 1,
+	 * "basicCategoryId": 160, "basicDateTime": 1468568887000,
+	 * "basicThumbnails": "/upload/mall/product/1/1468568853464.jpg",
+	 * "basicTypeIds": [ ], "basicUpdateTime": shan, }], "page":{"endRow": 2,
+	 * "firstPage": 1, "hasNextPage": true存在下一页false不存在, "hasPreviousPage":
+	 * true存在上一页false不存在, "isFirstPage": true是第一页false不是第一页, "isLastPage":
+	 * true是最后一页false不是最后一页, "lastPage": 最后一页的页码, "navigatePages": 导航数量，实现
+	 * 1...5.6.7....10效果, "navigatepageNums": []导航页码集合, "nextPage": 下一页,
+	 * "pageNum": 当前页码, "pageSize": 一页显示数量, "pages": 总页数, "prePage": 上一页,
+	 * "size": 总记录, "startRow": , "total":总记录数量} } }
+	 */
+	@RequestMapping(value = "/list")
+	@ResponseBody
+	public void list(@ModelAttribute net.mingsoft.attention.entity.BasicAttentionEntity basicAttentionEntity,
+			javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) {
+	
+		
 	}
 }
