@@ -5,7 +5,7 @@ package net.mingsoft.attention.action.people;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -13,13 +13,21 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import com.mingsoft.base.entity.ListJson;
+import com.mingsoft.base.filter.DateValueFilter;
+import com.mingsoft.base.filter.DoubleValueFilter;
 import com.alibaba.fastjson.JSONObject;
+import java.util.ArrayList;
+
+import com.mingsoft.base.constant.e.BaseEnum;
+import com.mingsoft.base.entity.BaseEntity;
+import com.mingsoft.basic.biz.IModelBiz;
 import com.mingsoft.basic.entity.BasicEntity;
+import com.mingsoft.basic.entity.ModelEntity;
 import com.mingsoft.people.action.BaseAction;
 import com.mingsoft.people.entity.PeopleEntity;
 import com.mingsoft.util.StringUtil;
-
+import net.mingsoft.basic.bean.EUListBean;
 import net.mingsoft.attention.biz.IBasicAttentionBiz;
 import net.mingsoft.attention.constant.ModelCode;
 import net.mingsoft.attention.entity.BasicAttentionEntity;
@@ -43,6 +51,8 @@ public class AttentionAction extends BaseAction {
 	 */
 	@Autowired
 	private IBasicAttentionBiz basicAttentionBiz;
+	
+	private IModelBiz modelBiz;  
 
 	/**
 	 * 新增关注
@@ -192,9 +202,34 @@ public class AttentionAction extends BaseAction {
 	 */	
 	@RequestMapping(value="/list")
 	@ResponseBody
-	public void list(@ModelAttribute
-	                                    net.mingsoft.attention.entity.BasicAttentionEntity basicAttentionEntity,
-	                                    javax.servlet.http.HttpServletRequest request,
-	                                    javax.servlet.http.HttpServletResponse response) {
+	public void list(@ModelAttribute net.mingsoft.attention.entity.BasicAttentionEntity basicAttentionEntity,
+			javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) {
+		String modelCode = request.getParameter("modelCode");
+		if(!StringUtil.isBlank(modelCode)) {
+			int modelId = BasicUtil.getModelCodeId(modelCode);
+			basicAttentionEntity.setBasicModelId(modelId);
+		}
+		BasicUtil.startPage();
+		List<BaseEntity> basicAttentionList = basicAttentionBiz.query(basicAttentionEntity);
+		EUListBean _list = new EUListBean(basicAttentionList, (int) BasicUtil.endPage(basicAttentionList).getTotal());
+		this.outJson(response, net.mingsoft.base.util.JSONArray.toJSONString(_list, new DoubleValueFilter(),new DateValueFilter("yyyy-MM-dd")));
+	}
+	
+	/**
+	 * 统计当前所属类别的总数
+	 * @param basicAttentionEntity
+	 * @param request
+	 * @param response
+	 */
+	@RequestMapping(value="/count")
+	@ResponseBody
+	public void count(@ModelAttribute net.mingsoft.attention.entity.BasicAttentionEntity basicAttentionEntity,
+	    javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) {
+		if(basicAttentionEntity != null){
+			int total = basicAttentionBiz.count(basicAttentionEntity);
+			this.outJson(response, total);
+		}else{
+			this.outJson(response, 0);
+		}
 	}
 }

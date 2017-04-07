@@ -105,4 +105,9 @@ public class BasicAttentionBizImpl extends BaseBizImpl implements IBasicAttentio
 		this.basicAttentionDao.delete(ids, peopleId,basicAttentionType);
 	}
 
+	@Override
+	public int count(BasicAttentionEntity basicAttentionEntity) {
+		return basicAttentionDao.count(basicAttentionEntity);
+	}
+
 }

@@ -77,6 +77,10 @@ public interface IBasicAttentionDao extends IBaseDao {
 	 * @param basicAttentionType 类型
 	 */
 	public void delete(@Param("ids") int[] ids,@Param("peopleId") int peopleId,@Param("basicAttentionType")int basicAttentionType);
-
 	
+	/**
+	 * 统计当前所属类别的总数
+	 * @param basicAttentionEntity
+	 */
+	public int count(BasicAttentionEntity basicAttentionEntity);
 }

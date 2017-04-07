@@ -95,4 +95,10 @@ public interface IBasicAttentionBiz extends IBaseBiz{
 	 * @param basicAttentionType 类型
 	 */
 	public void delete(int[] ids,int peopleId,int basicAttentionType);
+	
+	/**
+	 * 统计当前所属类别的总数
+	 * @param basicAttentionEntity
+	 */
+	public int count(BasicAttentionEntity basicAttentionEntity);
 }

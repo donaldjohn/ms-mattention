@@ -41,6 +41,12 @@ public class BasicAttentionEntity extends BaseEntity{
 	private int basicAttentionAppId;
 	
 	/**
+	 * 模块编号id
+	 * 不参与表结构
+	 */
+	private int basicModelId;
+	
+	/**
 	 * 关注类型
 	 */
 	private int basicAttentionType;
@@ -72,6 +78,22 @@ public class BasicAttentionEntity extends BaseEntity{
 
 	public void setBasicAttentionUrl(String basicAttentionUrl) {
 		this.basicAttentionUrl = basicAttentionUrl;
+	}
+
+	/**
+	 * 获取模块编号id
+	 * @return
+	 */
+	public int getBasicModelId() {
+		return basicModelId;
+	}
+
+	/**
+	 * 设置模块编号id
+	 * @param basicModelId
+	 */
+	public void setBasicModelId(int basicModelId) {
+		this.basicModelId = basicModelId;
 	}
 
 	/**

@@ -25,6 +25,7 @@
 		<result column="BA_TYPE" property="basicAttentionType" />
 		<result column="BA_DATETIME" property="basicAttentionTime" />
 		<result column="BA_URL" property="basicAttentionUrl" />
+		<result column="BASIC_MODELID" property="basicModelId" />
 		<association column="BA_BASICID" property="basicEntity"
 			javaType="com.mingsoft.basic.entity.BasicEntity">
 			<id column="BASIC_ID" property="basicId" />
@@ -101,7 +102,6 @@
 			limit ${page.pageNo*page.pageSize},#{page.pageSize};
 		</if>
 	</select>
-
 	<select id="queryCountByPeopleIdAndAppId" resultType="int">
 		select count(*) from basic_attention ba
 		left join basic b on
@@ -113,6 +113,29 @@
 		<if test="modelId != null">and b.basic_modelid=#{modelId}</if>
 	</select>
 	<!-- 根据用户ID和APPID查询用户关注内容列表结束 -->
+	
+	<!-- 查询列表-->
+	<select id="query" parameterType="net.mingsoft.attention.entity.BasicAttentionEntity" resultMap="resultMapBasic">
+		select * from basic_attention ba
+		left join basic b on
+		ba.ba_basicid = b.basic_id
+		<where>
+			<if test="basicAttentionType &gt; 0">and ba.ba_type=#{basicAttentionType}</if>
+			<if test="basicModelId &gt; 0">and b.BASIC_MODELID=#{basicModelId}</if>
+		</where>
+	</select>
+	
+	<select id="count" parameterType="net.mingsoft.attention.entity.BasicAttentionEntity" resultType="int">
+		select count(*) from basic_attention ba
+		left join basic b on
+		ba.ba_basicid = b.basic_id
+		<where>
+			<if test="basicAttentionType &gt; 0">and ba.ba_type=#{basicAttentionType}</if>
+			<if test="basicModelId &gt; 0">and b.BASIC_MODELID=#{basicModelId}</if>
+			<if test="basicId &gt; 0">and b.BASIC_ID=#{basicId}</if>
+		</where>
+	</select>
+	
 
 	<!-- 删除关注信息开始 -->
 	<delete id="deleteEntity" parameterType="int">
