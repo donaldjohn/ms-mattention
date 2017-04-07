@@ -52,8 +52,6 @@ public class AttentionAction extends BaseAction {
 	@Autowired
 	private IBasicAttentionBiz basicAttentionBiz;
 	
-	private IModelBiz modelBiz;  
-
 	/**
 	 * 新增关注
 	 * 
@@ -218,8 +216,11 @@ public class AttentionAction extends BaseAction {
 	/**
 	 * 统计当前所属类别的总数
 	 * @param basicAttentionEntity
-	 * @param request
-	 * @param response
+	 * <i>basicAttention参数包含字段信息参考：</i><br/>
+	 * basicAttentionBasicId - 信息编号：
+	 * basicAttentionType 关注类型 具体平台也可以根据自身的规则定义
+	 * <dt><span class="strong">返回</span></dt><br/>
+	 * 直接返回总数，注意：非json格式
 	 */
 	@RequestMapping(value="/count")
 	@ResponseBody

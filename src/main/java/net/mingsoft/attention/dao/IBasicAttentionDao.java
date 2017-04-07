@@ -14,28 +14,12 @@ import net.mingsoft.attention.entity.BasicAttentionEntity;
 
 /**
  * 
- * <p>
- * <b>铭飞科技-基础</b>
- * </p>
- * 
- * <p>
- * Copyright: Copyright (c) 2014 - 2015
- * </p>
- *
- * @author 成卫雄
- *                QQ:330216230
- *
- * <p>
- * Comments:关注持久化接口
- * </p>
- *
- * <p>
- * Create Date:2014-11-12
- * </p>
- *
- * <p>
- * Modification history:
- * </p>
+ * 关注插件
+ * @author 铭飞开发团队
+ * @version 
+ * 版本号：100-000-000<br/>
+ * 创建日期：2017年4月7日<br/>
+ * 历史修订：<br/>
  */
 public interface IBasicAttentionDao extends IBaseDao {
 	
@@ -81,6 +65,7 @@ public interface IBasicAttentionDao extends IBaseDao {
 	/**
 	 * 统计当前所属类别的总数
 	 * @param basicAttentionEntity
+	 * @return 总数
 	 */
 	public int count(BasicAttentionEntity basicAttentionEntity);
 }

@@ -99,6 +99,7 @@ public interface IBasicAttentionBiz extends IBaseBiz{
 	/**
 	 * 统计当前所属类别的总数
 	 * @param basicAttentionEntity
+	 * @return 总数
 	 */
 	public int count(BasicAttentionEntity basicAttentionEntity);
 }
