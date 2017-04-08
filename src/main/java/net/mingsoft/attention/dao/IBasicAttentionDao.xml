@@ -132,10 +132,9 @@
 		<where>
 			<if test="basicAttentionType &gt; 0">and ba.ba_type=#{basicAttentionType}</if>
 			<if test="basicModelId &gt; 0">and b.BASIC_MODELID=#{basicModelId}</if>
-			<if test="basicId &gt; 0">and b.BASIC_ID=#{basicId}</if>
+			<if test="basicAttentionBasicId &gt; 0">and ba.BA_BASICID=#{basicAttentionBasicId}</if>
 		</where>
 	</select>
-	
 
 	<!-- 删除关注信息开始 -->
 	<delete id="deleteEntity" parameterType="int">

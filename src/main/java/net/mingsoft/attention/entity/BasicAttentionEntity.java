@@ -47,23 +47,15 @@ public class BasicAttentionEntity extends BaseEntity{
 	private int basicModelId;
 	
 	/**
-	 * 文章id
-	 */
-	private int basicId;
-	
-	/**
 	 * 关注类型
 	 */
 	private int basicAttentionType;
-	
 	
 	/**
 	 * 关注时间
 	 */
 	private 	Date basicAttentionTime = new Date();
 	
-
-
 	/**
 	 * 收藏内容的标题
 	 */
@@ -85,22 +77,6 @@ public class BasicAttentionEntity extends BaseEntity{
 		this.basicAttentionUrl = basicAttentionUrl;
 	}
 	
-	/**
-	 * 获取文章id
-	 * @return
-	 */
-	public int getBasicId() {
-		return basicId;
-	}
-
-	/**
-	 * 设置文章id
-	 * @param basicId
-	 */
-	public void setBasicId(int basicId) {
-		this.basicId = basicId;
-	}
-
 	/**
 	 * 获取模块编号id
 	 * @return
