@@ -47,6 +47,11 @@ public class BasicAttentionEntity extends BaseEntity{
 	private int basicModelId;
 	
 	/**
+	 * 文章id
+	 */
+	private int basicId;
+	
+	/**
 	 * 关注类型
 	 */
 	private int basicAttentionType;
@@ -78,6 +83,22 @@ public class BasicAttentionEntity extends BaseEntity{
 
 	public void setBasicAttentionUrl(String basicAttentionUrl) {
 		this.basicAttentionUrl = basicAttentionUrl;
+	}
+	
+	/**
+	 * 获取文章id
+	 * @return
+	 */
+	public int getBasicId() {
+		return basicId;
+	}
+
+	/**
+	 * 设置文章id
+	 * @param basicId
+	 */
+	public void setBasicId(int basicId) {
+		this.basicId = basicId;
 	}
 
 	/**
