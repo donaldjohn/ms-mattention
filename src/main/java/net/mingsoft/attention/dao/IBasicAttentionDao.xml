@@ -120,6 +120,7 @@
 		left join basic b on
 		ba.ba_basicid = b.basic_id
 		<where>
+			and ba.BA_PEOPLEID=#{basicAttentionPeopleId}
 			<if test="basicAttentionType &gt; 0">and ba.ba_type=#{basicAttentionType}</if>
 			<if test="basicModelId &gt; 0">and b.BASIC_MODELID=#{basicModelId}</if>
 		</where>
