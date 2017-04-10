@@ -207,6 +207,7 @@ public class AttentionAction extends BaseAction {
 			int modelId = BasicUtil.getModelCodeId(modelCode);
 			basicAttentionEntity.setBasicModelId(modelId);
 		}
+		basicAttentionEntity.setBasicAttentionPeopleId(this.getPeopleBySession().getPeopleId());
 		BasicUtil.startPage();
 		List<BaseEntity> basicAttentionList = basicAttentionBiz.query(basicAttentionEntity);
 		EUListBean _list = new EUListBean(basicAttentionList, (int) BasicUtil.endPage(basicAttentionList).getTotal());
