@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.mingsoft.attention.dao.IBasicAttentionDao">
 	<sql id="column_list">
-		ba.ba_id,ba.ba_peopleid,ba.ba_basicid,ba.ba_appid,ba.ba_type,ba.ba_datetime,b.basic_title,b.ba_url
+		ba.ba_id,ba.ba_peoplei_d,ba.ba_basic_id,ba.ba_app_id,ba.ba_type,ba.ba_datetime,b.basic_title,b.ba_url
 	</sql>
 
 	<!-- 注入关注字段开始 -->
@@ -71,9 +71,9 @@
 	<select id="getEntityByPeopleAttention" resultMap="resultMap">
 		select * from basic_attention where 1=1
 		<if test="basicAttention != null">
-			and ba_peopleid = #{basicAttention.basicAttentionPeopleId}
-			and ba_basicid = #{basicAttention.basicAttentionBasicId}
-			and ba_appid
+			and ba_peoplei_d = #{basicAttention.basicAttentionPeopleId}
+			and ba_basic_id = #{basicAttention.basicAttentionBasicId}
+			and ba_app_id
 			= #{basicAttention.basicAttentionAppId}
 			and ba_type =
 			#{basicAttention.basicAttentionType}
@@ -93,8 +93,8 @@
 			</when>
 		</choose>
 		<where>
-			<if test="peopleId != null">and ba_peopleid=#{peopleId}</if>
-			<if test="appId != null">and ba_appid=#{appId}</if>
+			<if test="peopleId != null">and ba_peoplei_d=#{peopleId}</if>
+			<if test="appId != null">and ba_app_id=#{appId}</if>
 			<if test="attentionType != null">and ba_type=#{attentionType}</if>
 		</where>
 		order by ba_id desc
@@ -105,10 +105,10 @@
 	<select id="queryCountByPeopleIdAndAppId" resultType="int">
 		select count(*) from basic_attention ba
 		left join basic b on
-		ba.ba_basicid = b.basic_id
+		ba.ba_basic_id = b.basic_id
 		where 1=1
-		<if test="peopleId != null">and ba.ba_peopleid=#{peopleId}</if>
-		<if test="appId != null">and ba.ba_appid=#{appId}</if>
+		<if test="peopleId != null">and ba.ba_peoplei_d=#{peopleId}</if>
+		<if test="appId != null">and ba.ba_app_id=#{appId}</if>
 		<if test="attentionType != null">and ba.ba_type=#{attentionType}</if>
 		<if test="modelId != null">and b.basic_modelid=#{modelId}</if>
 	</select>
@@ -118,7 +118,7 @@
 	<select id="query" parameterType="net.mingsoft.attention.entity.BasicAttentionEntity" resultMap="resultMapBasic">
 		select * from basic_attention ba
 		left join basic b on
-		ba.ba_basicid = b.basic_id
+		ba.ba_basic_id = b.basic_id
 		<where>
 			and ba.BA_PEOPLEID=#{basicAttentionPeopleId}
 			<if test="basicAttentionType &gt; 0">and ba.ba_type=#{basicAttentionType}</if>
@@ -129,7 +129,7 @@
 	<select id="count" parameterType="net.mingsoft.attention.entity.BasicAttentionEntity" resultType="int">
 		select count(*) from basic_attention ba
 		left join basic b on
-		ba.ba_basicid = b.basic_id
+		ba.ba_basic_id = b.basic_id
 		<where>
 			<if test="basicAttentionType &gt; 0">and ba.ba_type=#{basicAttentionType}</if>
 			<if test="basicModelId &gt; 0">and b.BASIC_MODELID=#{basicModelId}</if>
