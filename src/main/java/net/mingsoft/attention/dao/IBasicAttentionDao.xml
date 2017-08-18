@@ -2,16 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="net.mingsoft.attention.dao.IBasicAttentionDao">
 	<sql id="column_list">
-		ba.ba_id,ba.ba_peoplei_d,ba.ba_basic_id,ba.ba_app_id,ba.ba_type,ba.ba_datetime,b.basic_title,b.ba_url
+		ba.ba_id,ba.ba_people_id,ba.ba_basic_id,ba.ba_app_id,ba.ba_type,ba.ba_datetime,b.basic_title,b.ba_url
 	</sql>
 
 	<!-- 注入关注字段开始 -->
 	<resultMap id="resultMap"
 		type="net.mingsoft.attention.entity.BasicAttentionEntity">
 		<id column="BA_ID" property="basicAttentionId" />
-		<result column="BA_PEOPLEID" property="basicAttentionPeopleId" />
-		<result column="BA_BASICID" property="basicAttentionBasicId" />
-		<result column="BA_APPID" property="basicAttentionAppId" />
+		<result column="BA_PEOPLE_ID" property="basicAttentionPeopleId" />
+		<result column="BA_BASIC_ID" property="basicAttentionBasicId" />
+		<result column="BA_APP_ID" property="basicAttentionAppId" />
 		<result column="BA_TYPE" property="basicAttentionType" />
 		<result column="BA_DATETIME" property="basicAttentionTime" />
 		<result column="BA_URL" property="basicAttentionUrl" />
@@ -19,14 +19,14 @@
 
 	<resultMap id="resultMapBasic" type="net.mingsoft.attention.entity.BasicAttentionEntity">
 		<id column="BA_ID" property="basicAttentionId" />
-		<result column="BA_PEOPLEID" property="basicAttentionPeopleId" />
-		<result column="BA_BASICID" property="basicAttentionBasicId" />
-		<result column="BA_APPID" property="basicAttentionAppId" />
+		<result column="BA_PEOPLE_ID" property="basicAttentionPeopleId" />
+		<result column="BA_BASIC_ID" property="basicAttentionBasicId" />
+		<result column="BA_APP_ID" property="basicAttentionAppId" />
 		<result column="BA_TYPE" property="basicAttentionType" />
 		<result column="BA_DATETIME" property="basicAttentionTime" />
 		<result column="BA_URL" property="basicAttentionUrl" />
 		<result column="BASIC_MODELID" property="basicModelId" />
-		<association column="BA_BASICID" property="basicEntity"
+		<association column="BA_BASIC_ID" property="basicEntity"
 			javaType="com.mingsoft.basic.entity.BasicEntity">
 			<id column="BASIC_ID" property="basicId" />
 			<result column="BASIC_TITLE" property="basicTitle" />
@@ -48,9 +48,9 @@
 		insert into BASIC_ATTENTION
 		<!-- 添加表字段 -->
 		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="basicAttentionPeopleId != null">BA_PEOPLEID,</if>
-			<if test="basicAttentionBasicId != null">BA_BASICID,</if>
-			<if test="basicAttentionAppId != null">BA_APPID,</if>
+			<if test="basicAttentionPeopleId != null">BA_PEOPLE_ID,</if>
+			<if test="basicAttentionBasicId != null">BA_BASIC_ID,</if>
+			<if test="basicAttentionAppId != null">BA_APP_ID,</if>
 			<if test="basicAttentionType !=null">BA_TYPE,</if>
 			<if test="basicAttentionTime !=null">BA_DATETIME,</if>
 			<if test="basicAttentionUrl !=null">BA_Url,</if>
@@ -71,7 +71,7 @@
 	<select id="getEntityByPeopleAttention" resultMap="resultMap">
 		select * from basic_attention where 1=1
 		<if test="basicAttention != null">
-			and ba_peoplei_d = #{basicAttention.basicAttentionPeopleId}
+			and ba_people_id = #{basicAttention.basicAttentionPeopleId}
 			and ba_basic_id = #{basicAttention.basicAttentionBasicId}
 			and ba_app_id
 			= #{basicAttention.basicAttentionAppId}
@@ -93,7 +93,7 @@
 			</when>
 		</choose>
 		<where>
-			<if test="peopleId != null">and ba_peoplei_d=#{peopleId}</if>
+			<if test="peopleId != null">and ba_people_id=#{peopleId}</if>
 			<if test="appId != null">and ba_app_id=#{appId}</if>
 			<if test="attentionType != null">and ba_type=#{attentionType}</if>
 		</where>
@@ -107,7 +107,7 @@
 		left join basic b on
 		ba.ba_basic_id = b.basic_id
 		where 1=1
-		<if test="peopleId != null">and ba.ba_peoplei_d=#{peopleId}</if>
+		<if test="peopleId != null">and ba.ba_people_id=#{peopleId}</if>
 		<if test="appId != null">and ba.ba_app_id=#{appId}</if>
 		<if test="attentionType != null">and ba.ba_type=#{attentionType}</if>
 		<if test="modelId != null">and b.basic_modelid=#{modelId}</if>
@@ -120,7 +120,7 @@
 		left join basic b on
 		ba.ba_basic_id = b.basic_id
 		<where>
-			and ba.BA_PEOPLEID=#{basicAttentionPeopleId}
+			and ba.BA_PEOPLE_ID=#{basicAttentionPeopleId}
 			<if test="basicAttentionType &gt; 0">and ba.ba_type=#{basicAttentionType}</if>
 			<if test="basicModelId &gt; 0">and b.BASIC_MODELID=#{basicModelId}</if>
 		</where>
@@ -133,7 +133,7 @@
 		<where>
 			<if test="basicAttentionType &gt; 0">and ba.ba_type=#{basicAttentionType}</if>
 			<if test="basicModelId &gt; 0">and b.BASIC_MODELID=#{basicModelId}</if>
-			<if test="basicAttentionBasicId &gt; 0">and ba.BA_BASICID=#{basicAttentionBasicId}</if>
+			<if test="basicAttentionBasicId &gt; 0">and ba.BA_BASIC_ID=#{basicAttentionBasicId}</if>
 		</where>
 	</select>
 
@@ -151,9 +151,9 @@
 		<where>
 			and BA_TYPE = #{basicAttentionType}
 			<if test="peopleId &gt; 0">
-			and ba_peopleID = #{peopleId}
+			and BA_PEOPLE_ID = #{peopleId}
 			</if>
-    		and ba_basicID in <foreach collection="ids" item="item" index="index" 
+    		and ba_basic_id in <foreach collection="ids" item="item" index="index" 
 			open="(" separator="," close=")">#{item}</foreach>
 		</where>
 	</delete>
