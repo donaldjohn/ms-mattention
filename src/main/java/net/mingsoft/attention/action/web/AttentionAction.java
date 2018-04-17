@@ -18,6 +18,9 @@ The MIT License (MIT) * Copyright (c) 2016 铭飞科技
  * IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */package net.mingsoft.attention.action.web;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,6 +30,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.mingsoft.people.action.BaseAction;
 
 import net.mingsoft.attention.biz.IBasicAttentionBiz;
+import net.mingsoft.attention.entity.BasicAttentionEntity;
 
 @Controller("attention")
 @RequestMapping("/attention")
@@ -49,8 +53,7 @@ public class AttentionAction extends BaseAction {
 	 */
 	@RequestMapping(value="/count")
 	@ResponseBody
-	public void count(@ModelAttribute net.mingsoft.attention.entity.BasicAttentionEntity basicAttentionEntity,
-	    javax.servlet.http.HttpServletRequest request, javax.servlet.http.HttpServletResponse response) {
+	public void count(@ModelAttribute BasicAttentionEntity basicAttentionEntity,HttpServletRequest request, HttpServletResponse response) {
 		if(basicAttentionEntity != null){
 			int total = basicAttentionBiz.count(basicAttentionEntity);
 			this.outJson(response, total);
