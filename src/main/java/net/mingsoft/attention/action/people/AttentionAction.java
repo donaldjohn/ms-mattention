@@ -47,6 +47,7 @@ import com.mingsoft.people.action.BaseAction;
 import com.mingsoft.people.entity.PeopleEntity;
 import com.mingsoft.util.StringUtil;
 import net.mingsoft.basic.bean.EUListBean;
+import net.mingsoft.basic.bean.ListBean;
 import net.mingsoft.attention.biz.IBasicAttentionBiz;
 import net.mingsoft.attention.constant.ModelCode;
 import net.mingsoft.attention.entity.BasicAttentionEntity;
@@ -229,7 +230,7 @@ public class AttentionAction extends BaseAction {
 		basicAttentionEntity.setBasicAttentionPeopleId(this.getPeopleBySession().getPeopleId());
 		BasicUtil.startPage();
 		List<BaseEntity> basicAttentionList = basicAttentionBiz.query(basicAttentionEntity);
-		EUListBean _list = new EUListBean(basicAttentionList, (int) BasicUtil.endPage(basicAttentionList).getTotal());
+		ListBean _list = new ListBean(basicAttentionList, BasicUtil.endPage(basicAttentionList));
 		this.outJson(response, net.mingsoft.base.util.JSONArray.toJSONString(_list, new DoubleValueFilter(),new DateValueFilter("yyyy-MM-dd")));
 	}
 	
