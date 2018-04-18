@@ -91,7 +91,7 @@ public class AttentionAction extends BaseAction {
 			HttpServletResponse response) {
 		if (basicAttention == null || basicAttention.getBasicAttentionBasicId() == 0
 				|| basicAttention.getBasicAttentionType() == 0) {
-			this.outJson(response, ModelCode.ATTENTION, false);
+			this.outJson(response, false);
 			return;
 		}
 		// 获取用户session
@@ -104,12 +104,12 @@ public class AttentionAction extends BaseAction {
 		// 检查是否已经存在
 		BasicAttentionEntity basicAttentionEntity = this.basicAttentionBiz.getEntityByPeopleAttention(basicAttention);
 		if (basicAttentionEntity != null) {
-			this.outJson(response, ModelCode.ATTENTION, false);
+			this.outJson(response, false);
 			return;
 		}
 
 		this.basicAttentionBiz.saveEntity(basicAttention);
-		this.outJson(response, ModelCode.ATTENTION, true);
+		this.outJson(response, true);
 	}
 
 	/**
@@ -130,7 +130,7 @@ public class AttentionAction extends BaseAction {
 			HttpServletResponse response) {
 		if (basicAttention == null || basicAttention.getBasicAttentionBasicId() == 0
 				|| basicAttention.getBasicAttentionType() == 0) {
-			this.outJson(response, ModelCode.ATTENTION, false);
+			this.outJson(response, false);
 			return;
 		}
 		// 获取用户session
@@ -142,9 +142,9 @@ public class AttentionAction extends BaseAction {
 
 		BasicAttentionEntity basicAttentionEntity = this.basicAttentionBiz.getEntityByPeopleAttention(basicAttention);
 		if (basicAttentionEntity == null || basicAttentionEntity.getBasicAttentionId() == 0) {
-			this.outJson(response, ModelCode.ATTENTION, false);
+			this.outJson(response, false);
 		} else {
-			this.outJson(response, ModelCode.ATTENTION, true);
+			this.outJson(response, true);
 		}
 	}
 
@@ -170,7 +170,7 @@ public class AttentionAction extends BaseAction {
 		int basicAttentionType = BasicUtil.getInt("basicAttentionType");
 		// 删除多条评论
 		this.basicAttentionBiz.delete(ids, this.getPeopleBySession(request).getPeopleId(), basicAttentionType);
-		this.outJson(response, ModelCode.ATTENTION, true);
+		this.outJson(response, true);
 	}
 
 

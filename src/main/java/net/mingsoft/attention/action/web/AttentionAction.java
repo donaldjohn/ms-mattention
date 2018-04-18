@@ -55,8 +55,7 @@ public class AttentionAction extends BaseAction {
 	@ResponseBody
 	public void count(@ModelAttribute BasicAttentionEntity basicAttentionEntity,HttpServletRequest request, HttpServletResponse response) {
 		if(basicAttentionEntity != null){
-			int total = basicAttentionBiz.count(basicAttentionEntity);
-			this.outJson(response, total);
+			this.outJson(response, basicAttentionBiz.count(basicAttentionEntity));
 		}else{
 			this.outJson(response, 0);
 		}
