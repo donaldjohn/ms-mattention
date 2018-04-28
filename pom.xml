@@ -8,7 +8,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>net.mingsoft</groupId>
 	<artifactId>ms-mattention</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>${project.groupId}:${project.artifactId}</name>
 	<description>ms-mattention tools Library</description>
@@ -48,10 +48,10 @@
 	<properties>
 		<java.version>1.7</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<ms.base.version>1.0.2-SNAPSHOT</ms.base.version>
-		<ms.basic.version>1.0.3-SNAPSHOT</ms.basic.version>
-		<ms.mpeople.version>1.0.0-SNAPSHOT</ms.mpeople.version>
-		<ms.mdiy.version>1.0.2-SNAPSHOT</ms.mdiy.version>
+		<ms.base.version>1.0.4</ms.base.version>
+		<ms.basic.version>1.0.5</ms.basic.version>
+		<ms.mpeople.version>1.0.4</ms.mpeople.version>
+		<ms.mdiy.version>1.0.4</ms.mdiy.version>
 	</properties>
 	<dependencies>
 		<dependency>
